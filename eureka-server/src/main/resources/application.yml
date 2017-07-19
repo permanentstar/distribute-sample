@@ -1,0 +1,25 @@
+spring:
+  profiles:
+#  profile peer1|peer2
+    active: peer2
+  application:
+      name: eureka-server
+eureka:
+  instance:
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    metadata-map:
+            management:
+              context-path: ${management.context-path}
+  server:
+      enable-self-preservation: false
+  #    eviction-interval-timer-in-ms: 4000
+management:
+  security:
+    enabled: false
+  context-path: /manage
+
+logging:
+  level:
+    root: INFO

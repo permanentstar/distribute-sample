@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: micro-service-B
+  profiles:
+      active: prod   #eureka-alone or eureka-ha
+  cloud:
+    config:
+      #uri: http://localhost:8181
+      discovery:
+        enabled: true
+        service-id: config-server
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.246.40.188:9192/eureka/,http://10.246.40.188:9191/eureka/

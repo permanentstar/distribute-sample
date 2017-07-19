@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active: prod
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        prefix: /config
+        bootstrap: true
+#        native:
+#          search-locations: file:///app/distribute/local-repo/{application}
+        git:
+#          uri: file:///E:/app/distribute/github/distribute
+          uri: https://github.com/permanentstar/distribute.git
+#          force-pull: true
+#          username: xxx
+#          password: yyy
+          search-paths: "{application}"
+          basedir: /app/distribute/github/distribute
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.246.40.188:9192/eureka/,http://10.246.40.188:9191/eureka/

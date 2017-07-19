@@ -1,0 +1,9 @@
+server:
+  port: 9191
+eureka:
+  instance:
+#    preferIpAddress: true
+    hostname: hostname1
+  client:
+    serviceUrl:
+      defaultZone: http://hostname2:9192/eureka/

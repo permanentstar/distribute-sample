@@ -1,0 +1,7 @@
+server:
+  port: 5051
+test:
+  t1: v1
+endpoints:
+  restart:
+    enabled: true

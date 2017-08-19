@@ -6,7 +6,7 @@ spring:
   cloud:
     config:
       server:
-        prefix: /config
+#        prefix: /config
         bootstrap: true
 #        native:
 #          search-locations: file:///app/distribute/local-repo/{application}

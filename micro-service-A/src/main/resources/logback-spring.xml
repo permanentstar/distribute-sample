@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    <include resource="org/springframework/boot/logging/logback/file-appender.xml" />
+    <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+    <springProperty scope="context" name="esSinkHost" source="logging.sink.es.host"/>
+    <springProperty scope="context" name="esSinkPort" source="logging.sink.es.port"/>
+    <property name="hostname" value="${HOSTNAME}" />
+    <appender name="SYSLOG" class="ch.qos.logback.classic.net.SyslogAppender">
+        <syslogHost>${esSinkHost}</syslogHost>
+        <port>${esSinkPort}</port>
+        <facility>USER</facility>
+        <suffixPattern>&lt;1&gt;%d{MMM dd HH:mm:ss} ${hostname} ${springAppName}:&lt;log4j:event logger=&quot;%c{1}&quot; event_time=&quot;%d&quot;level=&quot;%p&quot;thread=&quot;%t&quot;&gt;&lt;log4j:message&gt;&lt;![CDATA[%replace(%m){'\r\n',''}]]&gt;&lt;/log4j:message&gt;&lt;log4j:throwable&gt;&lt;![CDATA[%replace(%exception){'\n',''}]]&gt;&lt;/log4j:throwable&gt;&lt;log4j:locationInfoclass=&quot;%class&quot; method=&quot;%method&quot;file=&quot;%file&quot;line=&quot;%line&quot;/&gt;&lt;/log4j:event&gt;%n%nopex
+        </suffixPattern>
+        <throwableExcluded>true</throwableExcluded>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+        <appender-ref ref="SYSLOG" />
+    </root>
+</configuration>
+
+
+

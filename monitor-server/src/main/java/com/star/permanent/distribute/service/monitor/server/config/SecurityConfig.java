@@ -1,4 +1,4 @@
-package com.star.permanent.distribute.service.config.server.config;
+package com.star.permanent.distribute.service.monitor.server.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,8 +19,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/login.html", "/**/*.css", "/img/**", "/third-party/**")
                 .permitAll();
-
-        http.authorizeRequests().antMatchers("/config/**").permitAll();
 
         // ... and any other request needs to be authorized
         http.authorizeRequests().antMatchers("/**").authenticated();

@@ -3,6 +3,7 @@ package com.star.permanent.distribute.service.micro.service.B.web;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import com.star.permanent.distribute.service.micro.service.B.feign.FeignInterface;
+import com.star.permanent.distribute.service.micro.service.common.service.Test_Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
@@ -34,6 +35,9 @@ public class TestController {
 
     @Autowired
     private FeignInterface feignInterface;
+
+    @Autowired
+    private Test_Service test_service;
 
     @Value("${test.t1}")
     private String t1;
@@ -84,5 +88,11 @@ public class TestController {
     @RequestMapping("discover-feign1")
     public String feign1(){
         return feignInterface.test1();
+    }
+
+    @RequestMapping("dependence-context")
+    public String depContext(){
+        test_service.methodA();
+        return "ok";
     }
 }

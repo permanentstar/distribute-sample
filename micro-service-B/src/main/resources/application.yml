@@ -1,7 +1,8 @@
 server:
-  port: 5051
+  port: 5052
 test:
   t1: v1
+  cc: 222
 endpoints:
   restart:
     enabled: true
